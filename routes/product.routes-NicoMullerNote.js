@@ -7,7 +7,7 @@ const productosController = require('../controllers/product.controller')
 router.get("/products",productosController.getProducts)
 
 //obtener producto en particular
-router.get("/product",productosController.getProduct)
+router.get("/product/:idProduct",productosController.getProduct)
 
 //obtener productos
 router.post("/product",productosController.addProduct)

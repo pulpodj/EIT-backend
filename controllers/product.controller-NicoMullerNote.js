@@ -12,30 +12,11 @@ const getProducts = (req,res) => {
 }
 
 const getProduct = (req,res) => {
-    const id = req.query.id;
-
-    if(!id){
-        return res.status(400).send({
-            msg: "Es necesario un id para buscar"
-        })
-    }
-
-    Product.findById(id).then((product)=>{   
-        
-        if(!product){
-            return res.status(404).send({
-                msg: 'No se encontro el producto'
-               }) 
-        }
+    Product.find().then(function(productos){        
         res.status(200).send({
             msg: 'Productos obtenidos correctamente',
-            producto: product
+            productos: productos
         });
-    }).catch((error) => {
-
-       return res.status(500).send({
-        msg: 'No se pudo obtener el producto'
-       }) 
     })
     
 }
@@ -74,7 +55,6 @@ const deleteProduct = (req,res) => {
 
 module.exports = {
     getProducts,
-    getProduct,
     addProduct,
     deleteProduct
 }
